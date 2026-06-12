@@ -23,3 +23,8 @@ plaintext.txt
 *.njsproj
 *.sln
 *.swp
+
+# Build releases and distribution
+dist/
+*.zip
+
