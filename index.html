@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEL: Chaotic Reservoir Cryptography Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Countdown Overlay during Auto-Harvesting -->
+    <div id="harvest-overlay" class="overlay" style="display: none;">
+        <div class="overlay-title">HARVESTING DIVINE ENTROPY</div>
+        <div class="overlay-subtitle">Capturing real-time physical chaos from the environment. Please wave at the camera or watch the particles fall.</div>
+        <div id="countdown-display" class="countdown">3</div>
+        <div style="color: var(--gold); font-size: 0.9rem; font-family: var(--font-mono);">SPEARHEAD RESERVOIR CHARGING...</div>
+    </div>
+
+    <header>
+        <div class="brand">
+            <div class="brand-icon">🔱</div>
+            <div>
+                <h1 class="brand-title">VEL</h1>
+                <div class="brand-tagline">Chaotic Reservoir Cryptography & Protection Engine</div>
+            </div>
+        </div>
+        <div class="version">V1.0.0 // PROTOCOL</div>
+    </header>
+
+    <main class="dashboard-grid">
+        
+        <!-- Left Panel: Entropy Controls & Vision Feed -->
+        <section class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">📡 Entropy Harvester</h2>
+                <span class="glow-dot" style="color: var(--cyan); background: var(--cyan);"></span>
+            </div>
+            
+            <div class="camera-container">
+                <video id="webcam-video"></video>
+                <canvas id="canvas-webcam" width="400" height="300"></canvas>
+            </div>
+            
+            <div class="control-group">
+                <label for="mode-select" class="control-label">Harvesting Driver</label>
+                <select id="mode-select">
+                    <option value="sim">Simulation Driver (Rain Attractor)</option>
+                    <option value="vision" selected>Camera Driver (Motion Vision)</option>
+                    <option value="sensor">Sensor Driver (CMOS Shot Noise)</option>
+                    <option value="serial">USB Serial Driver (Arduino/Pi Link)</option>
+                    <option value="quantum">Quantum Driver (ANU API / Tunneling)</option>
+                </select>
+            </div>
+            
+            <div id="serial-connection-group" class="control-group" style="display: none; margin-top: 5px;">
+                <button id="btn-connect-serial" class="btn btn-secondary" style="font-size: 0.85rem; border-color: var(--gold); width: 100%;">
+                    🔌 Link Serial Hardware
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <label for="seed-input" class="control-label">Reservoir Initial Seed</label>
+                <input type="text" id="seed-input" class="control-input" value="cfe14fe4f35ea43568731e3f59348b8b144878d18dc68e7860613d81a236d02f" placeholder="Enter custom seed">
+            </div>
+            
+            <div class="control-group">
+                <div class="slider-container">
+                    <label for="leak-input" class="control-label">LSM Leak Rate</label>
+                    <span id="leak-value">0.25</span>
+                </div>
+                <input type="range" id="leak-input" min="0.05" max="1.0" step="0.05" value="0.25" style="accent-color: var(--gold);">
+            </div>
+            
+            <button id="btn-toggle-harvest" class="btn btn-secondary">
+                <span class="glow-dot" style="color: var(--cyan); background: var(--cyan);"></span> Start Harvest
+            </button>
+            <div id="harvest-status" class="harvest-status-indicator" style="font-size: 0.8rem; font-family: var(--font-mono);">
+                Idle. Waiting for manual or auto harvest.
+            </div>
+        </section>
+        
+        <!-- Center Panel: The Divine Vel Spear -->
+        <section class="panel vel-panel">
+            <div class="panel-header" style="width: 100%;">
+                <h2 class="panel-title" style="margin: 0 auto;">🔱 The Spear of Protection</h2>
+            </div>
+            <canvas id="canvas-vel" width="450" height="500"></canvas>
+            <div style="font-size: 0.8rem; text-align: center; color: var(--text-muted); max-width: 380px; margin-top: 10px;">
+                <strong>Broad Top:</strong> 128-node neural reservoir (vast knowledge). <br>
+                <strong>Sharp Tip:</strong> SHA-256 OTP digest point. <br>
+                <strong>Long Staff:</strong> Seed and coordinate replay timeline.
+            </div>
+        </section>
+        
+        <!-- Right Panel: Cryptography Workstation & Terminal -->
+        <section class="panel">
+            <div class="panel-header">
+                <h2 class="panel-title">🛡️ Cryptographic HUD</h2>
+                <span class="glow-dot" style="color: var(--gold); background: var(--gold);"></span>
+            </div>
+            
+            <!-- Live entropy info -->
+            <div class="hud-box">
+                <div class="control-label" style="margin-bottom: 5px;">Live Key Stream Bits</div>
+                <div id="binary-stream" class="binary-stream">00000000 00000000...</div>
+                <div class="entropy-hud" style="margin-top: 8px;">
+                    <span>State Entropy:</span>
+                    <span id="entropy-value" class="entropy-value">0.0000 bits/byte</span>
+                </div>
+                <div class="entropy-hud" style="margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; font-size: 0.8rem;">
+                    <span>Kottayil Triad (LHF):</span>
+                    <span>
+                        <span style="color: var(--cyan); font-weight: bold;">H: <span id="lhf-hope">0</span>%</span> / 
+                        <span style="color: var(--text-muted); font-weight: bold;">L: <span id="lhf-love">0</span>%</span> / 
+                        <span style="color: var(--purple); font-weight: bold;">F: <span id="lhf-fear">0</span>%</span>
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Terminal console logs -->
+            <div class="control-group">
+                <div class="control-label">System Logs</div>
+                <div id="terminal-logs" class="terminal"></div>
+                <button id="btn-self-test" class="btn btn-secondary" style="margin-top: 5px; width: 100%; font-size: 0.8rem;">
+                    ⚙️ Run Engine Self-Test
+                </button>
+            </div>
+            
+            <!-- Encryption/Decryption Tabs -->
+            <div class="tab-container">
+                <!-- ENCRYPT TAB -->
+                <div class="control-group">
+                    <div class="control-label" style="color: var(--gold);">1. Encryption Workstation</div>
+                    <textarea id="plaintext-input" placeholder="Input plaintext message to encrypt..."></textarea>
+                    <button id="btn-harvest-encrypt" class="btn" style="margin-top: 5px;">
+                        🔱 Harvest & Encrypt
+                    </button>
+                    <textarea id="ciphertext-output" placeholder="Generated Hex Ciphertext will appear here..." readonly style="margin-top: 5px; height: 50px; background: rgba(5,5,5,0.4);"></textarea>
+                </div>
+                
+                <!-- DECRYPT TAB -->
+                <div class="control-group" style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;">
+                    <div class="control-label" style="color: var(--cyan);">2. Decryption Workstation</div>
+                    <textarea id="ciphertext-input" placeholder="Paste Hex Ciphertext here..."></textarea>
+                    
+                    <div class="file-upload-wrapper" style="margin-top: 5px;">
+                        <input type="file" id="keyfile-upload" class="file-upload-input" accept=".vel">
+                    </div>
+                    
+                    <button id="btn-decrypt-replay" class="btn btn-secondary" style="margin-top: 5px; width: 100%;">
+                        🔓 Decrypt & Replay
+                    </button>
+                    <textarea id="plaintext-output" placeholder="Decrypted Plaintext will appear here..." readonly style="margin-top: 5px; height: 50px; background: rgba(5,5,5,0.4);"></textarea>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Load JavaScript Modules -->
+    <script src="js/drivers/driver.base.js"></script>
+    <script src="js/drivers/driver.camera.js"></script>
+    <script src="js/drivers/driver.sim.js"></script>
+    <script src="js/drivers/driver.serial.js"></script>
+    <script src="js/drivers/driver.quantum.js"></script>
+    <script src="js/lsm.js"></script>
+    <script src="js/crypto.js"></script>
+    <script src="js/vel-core.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

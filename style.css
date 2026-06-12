@@ -1,0 +1,402 @@
+/*
+ * style.css - Visual Style System for VEL Cryptography Engine
+ * Curated Palette: Royal Gold, Peacock Indigo, and Cyan Glow
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-dark: #080b11;
+    --bg-panel: rgba(17, 22, 37, 0.65);
+    --gold: #ffd700;
+    --gold-dim: #cca300;
+    --cyan: #00f3ff;
+    --purple: #d300ff;
+    --peacock: #008080;
+    --text-main: #f0f4f8;
+    --text-muted: #8fa0b0;
+    --border: rgba(255, 215, 0, 0.18);
+    --glow-cyan: 0 0 15px rgba(0, 243, 255, 0.3);
+    --glow-gold: 0 0 15px rgba(255, 215, 0, 0.25);
+    --font-sans: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 10% 10%, rgba(211, 0, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 243, 255, 0.05) 0%, transparent 45%);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto 20px auto;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    font-size: 2rem;
+    color: var(--gold);
+    text-shadow: var(--glow-gold);
+}
+
+.brand-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold) 30%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.version {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--gold);
+}
+
+/* Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr 400px;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Glassmorphic Panels */
+.panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 10px;
+}
+
+.panel-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Video & Camera Visualizers */
+.camera-container {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#canvas-webcam {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#webcam-video {
+    display: none; /* Processing is done offscreen */
+}
+
+/* Controls */
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.control-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.control-input, select {
+    background: rgba(10, 15, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 10px;
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border 0.3s;
+}
+
+.control-input:focus, select:focus {
+    border-color: var(--gold-dim);
+}
+
+.slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+/* Buttons */
+.btn {
+    background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 100%);
+    color: #080b11;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--glow-gold);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-color: var(--cyan);
+}
+
+/* Tab Headers */
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Center Panel (The Vel) */
+.vel-panel {
+    align-items: center;
+    justify-content: center;
+    min-height: 550px;
+}
+
+#canvas-vel {
+    width: 100%;
+    max-width: 450px;
+    height: 500px;
+    border-radius: 8px;
+}
+
+/* Right Panel Elements (Logs, Terminals, inputs) */
+.hud-box {
+    background: rgba(8, 12, 20, 0.85);
+    border: 1px solid rgba(0, 243, 255, 0.08);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.binary-stream {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cyan);
+    word-break: break-all;
+    overflow-y: auto;
+    height: 50px;
+    line-height: 1.3;
+}
+
+.entropy-hud {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.entropy-value {
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-weight: bold;
+}
+
+/* Terminal Console */
+.terminal {
+    background: rgba(5, 8, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    height: 140px;
+    padding: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    overflow-y: auto;
+    line-height: 1.4;
+    color: #a0c0e0;
+}
+
+.term-time {
+    color: var(--gold);
+}
+
+/* Text Areas */
+textarea {
+    width: 100%;
+    height: 80px;
+    background: rgba(10, 15, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 10px;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    resize: none;
+    outline: none;
+    transition: border 0.3s;
+}
+
+textarea:focus {
+    border-color: var(--cyan);
+}
+
+/* Keyfile Upload Wrapper */
+.file-upload-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.file-upload-input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* Glow dot icon */
+.glow-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px currentColor;
+}
+
+/* Countdown / Harvesting Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 11, 17, 0.92);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.overlay-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+.overlay-subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+    max-width: 450px;
+}
+
+.countdown {
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--cyan);
+    text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+    font-family: var(--font-mono);
+}
+
+.harvest-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
